@@ -79,11 +79,12 @@ int delete_element()
         val=queue[front];
         front++;
         if(front>rear)
+        //This condition is written incase if above front==rear 
+        //So the for the next operation we start from an empty array 
             front=rear=-1;
         return val; 
     }
 }
-
 int peek()
 {
     if(front==-1 || front>rear)

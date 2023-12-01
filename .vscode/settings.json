@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "Queue.C": "cpp"
+        "Queue.C": "cpp",
+        "Circular_Queue.C": "cpp"
     }
 }
