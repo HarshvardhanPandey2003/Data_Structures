@@ -81,9 +81,29 @@ int delete_element()
 
     if(front==rear)
         front=rear=-1;
-    else if(rear == MAX-1)
+    else if(front== MAX-1)
         front==0;
     else
         front++;
 return val;
 }
+
+int peek()
+{
+    if(front==-1 && rear==-1)
+    {
+        printf("\n QUEUE IS EMPTY");
+        return -1;
+    }
+    else
+    {
+        return queue[front];
+    }
+}
+
+void display()
+{
+    int i;
+    printf("\n");
+    if (front ==–1 && rear= =–1)
+    printf ("\n QUEUE IS EMPTY");
