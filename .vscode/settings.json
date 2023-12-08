@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "Queue.C": "cpp",
-        "Circular_Queue.C": "cpp"
+        "Circular_Queue.C": "cpp",
+        "paranthesis.C": "cpp",
+        "BinarySearch.C": "cpp"
     }
 }
