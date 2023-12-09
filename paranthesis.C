@@ -42,7 +42,7 @@ int main() {
             }
         }
     }
-
+    //Important to remeber function
     if (top != -1) {
         flag = 0; // Unmatched opening brackets
     }
