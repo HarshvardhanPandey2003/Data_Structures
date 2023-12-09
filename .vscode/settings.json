@@ -3,6 +3,7 @@
         "Queue.C": "cpp",
         "Circular_Queue.C": "cpp",
         "paranthesis.C": "cpp",
-        "BinarySearch.C": "cpp"
+        "BinarySearch.C": "cpp",
+        "Prefix_Eval.C": "cpp"
     }
 }

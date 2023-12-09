@@ -1,39 +1,57 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#define MAX 10
-int top = -1;
-int stk[MAX];
-char pop();
-void push(char);
 
-void main()
-{
-    char exp[MAX],temp;
-    int i, flag=1;
-    // Now in this algorithm we keep push the openening stack and
-    // when we find a closing stack then we pop the last element and check 
-    // wheter is it the closing bracket of of the popped elemen
+#define MAX 10
+
+int top = -1;
+char stk[MAX];
+
+char pop() {
+    if (top == -1) {
+        printf("Stack Underflow\n");
+        return '\0'; // Return a null character to indicate an error
+    }
+    return stk[top--];
+}
+
+void push(char item) {
+    if (top == MAX - 1)
+        printf("Stack Overflow\n");
+    else 
+        stk[++top] = item;
+}
+
+int main() {
+    char exp[MAX];
+    int i, flag = 1;
+
     printf("Enter an expression : ");
     fgets(exp, sizeof(exp), stdin);
 
-    for(i=0;i<strlen(exp);i++)
-    {
-        push(exp[i]);
+    for (i = 0; i < strlen(exp); i++) {
+        if (exp[i] == '(' || exp[i] == '[' || exp[i] == '{') {
+            push(exp[i]);
+        } else if (exp[i] == ')' || exp[i] == ']' || exp[i] == '}') {
+            char popped = pop();
+            if ((exp[i] == ')' && popped != '(') ||
+                (exp[i] == ']' && popped != '[') ||
+                (exp[i] == '}' && popped != '{')) {
+                flag = 0;
+                break;
+            }
+        }
     }
-    printf("\n");
 
-    for(i=0;i<strlen(exp);i++)
-    {
-        printf("%d",&exp[i]);
+    if (top != -1) {
+        flag = 0; // Unmatched opening brackets
     }
+
+    if (flag) {
+        printf("Expression is balanced.\n");
+    } else {
+        printf("Expression is not balanced.\n");
+    }
+
+    return 0;
 }
-
-    void push(char item) 
-    {
-        if (top == MAX - 1)
-            printf("Stack Overflow\n");
-        else 
-            stk[++top] = item;
-        
-    }
