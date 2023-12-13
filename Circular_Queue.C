@@ -105,6 +105,6 @@ void display()
 {
     int i;
     printf("\n");
-    if (front ==–1 && rear= =–1)
+    if (front ==-1 && rear ==-1)
     printf ("\n QUEUE IS EMPTY");
 }

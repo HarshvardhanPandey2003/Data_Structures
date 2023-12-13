@@ -1,66 +1,51 @@
 #include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<malloc.h>
 #include<string.h>
+#define MAX 30
 
-int stk[10];
-int pop();
+int st[MAX];
 int top = -1;
-void push(int val);
-int get_type(char c)
-{
-    if(c == '+' || c == '-' || c == '*' || c == '/')
-        return 1;
-    else 
-        return 0;
+
+void push(int n){
+    st[++top] = n;
 }
-int pop()
-{
-    return(stk[top--]);
+
+int pop(){
+    return st[top--];
 }
- void push(int val)
- {
- stk[++top] = val;
- }
- 
- int main()
- {
-    char prefix[10];
-    int len, val, i, opr1, opr2, res;
-     printf("\n Enter the prefix expression : ");
-    fgets(prefix, sizeof(prefix),stdin);
-    len = strlen(prefix);
-    
-    for(i=len-1;i>=0;i--)
-    {
-        switch(get_type(prefix[i]))
-        {
-            case 0:
-                val = prefix[i]-'0';
-                push(val);
-                break;
-            case 1:
-                opr1=pop();
-                opr2=pop();
-                switch(prefix[i])
-                {
-                 case '+': 
-                 res = opr1 + opr2;
-                 break;
-                 case '-': 
-                    res = opr1 - opr2;
-                    break;
-                 case '*': 
-                    res = opr1 * opr2;
-                    break;
-                 case '/': 
-                    res = opr1 / opr2;
-                    break;
-                 }
-                push(res);
-                break;
+
+void main(){
+    char s[100];
+    printf("Enter prefix expression : ");
+    gets(s);
+    for(int i=strlen(s)-1;i>=0;i--){
+        if(isdigit(s[i])){
+            int num = (int)(s[i]) - 48;
+            // printf("%d\n",num);
+            push(num);
         }
-        
-         //Come out of the loop as soon as the operation is done 
+        else{
+            char exp = s[i];
+            int num1 = pop();
+            int num2 = pop();
+            // printf("%d %d %c ",num1,num2,exp);
+            if(exp == '+'){
+                push(num2+num1);
+            }
+            else if(exp == '-'){
+                push(num1-num2);
+            }
+            else if(exp == '*'){
+                push(num2*num1);
+            }
+            else if(exp == '/'){
+                push(num1/num2);
+            }
+            
+        }
     }
-            printf("\n RESULT = %d",stk[0]);
-            return 0;
- }
+    printf("%d\n",st[top]);
+    
+}

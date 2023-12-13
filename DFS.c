@@ -25,7 +25,13 @@ void push(struct Stack *s, int value)
     }
     else
     {
+        if(isEmpty(s))
+        {
+            s->top=0;
+        }
+        else
         s->items[++s->top] = value;
+        
     }
 }
 int pop(struct Stack* s)

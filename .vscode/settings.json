@@ -5,5 +5,6 @@
         "paranthesis.C": "cpp",
         "BinarySearch.C": "cpp",
         "Prefix_Eval.C": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

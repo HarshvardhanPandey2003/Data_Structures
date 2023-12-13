@@ -3,7 +3,9 @@
 #include <stdlib.h>
 struct node *create_ll(struct node *start);
 struct node *insert_after(struct node *start);
-struct node *delete_before(struct node *start);
+struct node *delete_beg(struct node *start);
+struct node *delete_node(struct node *start);
+struct node *sort_list(struct node *start);
 void display(struct node *start);
 struct node{
     int data;
@@ -28,17 +30,54 @@ void main()
             display(start);
             break;
         case 3:
-            insert_after(start);
+            start=insert_after(start);
+            break;
+        case 4:
+            start=delete_node(start);
+            break;
+        case 5:
+            start=sort_list(start);
             break;
         case 13:
             printf("Exiting the program.\n");
             break;
         default:
-            printf("Enter a correct value ");
+            printf("\nEnter a correct value ");
     }
     }while(c!=13);
 }
-
+struct node *delete_node(struct node *start)
+{
+    int num;
+    struct node *ptr,*preptr;
+    printf("\nEnter value of which you want to remove the number :");
+    scanf("%d",&num);
+    
+    if(start==NULL)
+    {
+        start=delete_beg(start);
+        return start;
+    }
+    else{
+        ptr=start;
+        while(ptr->data!=num)
+        {
+            preptr=ptr;
+            ptr=ptr->next;
+        }
+        preptr->next=ptr->next;
+        free(ptr);
+    }
+    return start;
+}
+struct node *delete_beg(struct node *start)
+{
+    struct node *ptr;
+    ptr = start;
+    start = start -> next;
+    free(ptr);
+    return start;
+}
 struct node *insert_after(struct node *start)
 {
     int value,num;
@@ -47,7 +86,7 @@ struct node *insert_after(struct node *start)
     printf("Enter a value : ");
     scanf("%d",&value);
     
-    printf("Enter value after which you want to add the number :");
+    printf("\nEnter value after which you want to add the number :");
     scanf("%d",&num);
     
     ptr=start;
@@ -92,6 +131,32 @@ struct node *create_ll(struct node *start)
     printf("\nNew Element has been added : %d ",new_node->data);
     return start;
 }
+
+struct node *sort_list(struct node *start)
+{
+    struct node *ptr1, *ptr2;
+    int temp;
+    ptr1 = start;
+    while(ptr1->next!=NULL)
+    {
+        ptr2=ptr1->next;
+        while(ptr2!=NULL)
+        {
+            if(ptr1->data < ptr2->data)
+            {
+                temp = ptr1 -> data;
+                ptr1 -> data = ptr2 -> data;
+                ptr2 -> data = temp;
+            }
+            //Iterate ptr2
+            ptr2=ptr2->next;
+        }
+        ptr1=ptr1->next;
+    }
+
+    return start;
+}
+
 void display(struct node *start)
 {
     struct node *ptr;
